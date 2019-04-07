@@ -1,9 +1,9 @@
 NAME = push_swap
 NAME2 = checker
 
-SRC = check_arg.c\
+SRC = push_swap.c\
+check_arg.c\
 diff_num.c\
-push_swap.c\
 func_t_swap.c\
 func_t_stack.c\
 print_swap.c\
@@ -12,12 +12,13 @@ check_number_space.c\
 command.c\
 command_1.c\
 command_2.c\
-solve_bubbly.c\
-validation_check.c
+validation_check.c\
+solve.c\
+position.c
 
-SRC2 = check_arg.c\
+SRC2 = checker.c\
+check_arg.c\
 diff_num.c\
-checker.c\
 func_t_swap.c\
 func_t_stack.c\
 print_swap.c\
@@ -26,8 +27,7 @@ check_number_space.c\
 command.c\
 command_1.c\
 command_2.c\
-solve_bubbly.c\
-validation_check.c
+validation_check.c\
 
 INCLUDES = ft_printf/libftprintf.a
 

@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:32:11 by emeha             #+#    #+#             */
-/*   Updated: 2019/03/28 19:21:42 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/06 21:21:58 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,17 @@ static void	check_space(char *str)
 	}
 }
 
-int			*check_arg(int arc, char **arg, int *size)
+int			*check_arg(int arc, char **arg, int *size, int start)
 {
 	char	*str;
 	int		i;
 
 	str = ft_strnew(0);
 	(*size) = arc;
-	i = 1;
+	i = 1 + start;
 	while (i < (*size))
 	{
+		// ft_printf("i = %d, %s\n", i, arg[i]);
 		if (check_number_space(arg[i]) == 0)
 		{
 			ft_putstr("Error\n");
@@ -76,7 +77,7 @@ int			*check_arg(int arc, char **arg, int *size)
 		}
 		i++;
 	}
-	i = 1;
+	i = 1 + start;
 	while (i < (*size))
 	{
 		str = ft_strjoin_free(str, arg[i], 1, 0);

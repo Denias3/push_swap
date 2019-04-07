@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 14:40:11 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/04 18:58:24 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/06 21:28:17 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void	com_pa(t_swap *w, int pr)
 {
 	if (pr == 1)
 		ft_printf("pa\n");
-	operations_push(w->a, w->b);
+	operations_push(w->b, w->a);
 }
 
 void	com_pb(t_swap *w, int pr)
 {
 	if (pr == 1)
 		ft_printf("pb\n");
-	operations_push(w->b, w->a);
+	operations_push(w->a, w->b);
 }

@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 17:33:06 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/04 19:04:31 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/06 21:24:20 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	distributor(t_swap *w, char *line)
 	return (0);
 }
 
-static int	checker_2(t_swap *w, char *str)
+static int	checker_2(t_swap *w, char *str, int flag)
 {
 	char **arr_str;
 	int i;
@@ -55,6 +55,8 @@ static int	checker_2(t_swap *w, char *str)
 			ft_printf("Error\n");
 			exit(1);
 		}
+		if (flag == 1)
+			print_swap(w);
 		i++;
 	}
 	if (validation_check(w) == 0)
@@ -77,15 +79,15 @@ int			main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
-	if (ft_strcmp(argv[1], "-v"))
+	if (ft_strcmp(argv[1], "-v") == 0)
 		flag = 1;
-	w = create_t_swap(argc, argv);
+	w = create_t_swap(argc, argv, flag);
 	str = ft_strnew(0);
 	while (get_next_line(0, &line))
 	{
 		str = ft_strjoin_free(str, line, 1, 1);
 		str = ft_strjoin_free(str, "\n", 1, 0);
 	}
-	checker_2(w, str);
+	checker_2(w, str, flag);
 	return (0);
 }

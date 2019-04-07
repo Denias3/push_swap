@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/emeha/CLionProjects/push_swap/ft_printf/ft_printf.h
+libft/libft.h
+/Users/emeha/CLionProjects/push_swap/ft_printf/libft/libft.h
+string.h
+-
+stdlib.h
+-
+stdarg.h
+-
+
+/Users/emeha/CLionProjects/push_swap/ft_printf/libft/get_next_line.h
+stdlib.h
+-
+unistd.h
+-
+
+/Users/emeha/CLionProjects/push_swap/ft_printf/libft/libft.h
+string.h
+-
+stdlib.h
+-
+get_next_line.h
+/Users/emeha/CLionProjects/push_swap/ft_printf/libft/get_next_line.h
+
+/Users/emeha/CLionProjects/push_swap/push_swap.h
+ft_printf/ft_printf.h
+/Users/emeha/CLionProjects/push_swap/ft_printf/ft_printf.h
+
+/Users/emeha/CLionProjects/push_swap/solve.c
+push_swap.h
+/Users/emeha/CLionProjects/push_swap/push_swap.h
+
