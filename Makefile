@@ -38,13 +38,8 @@ all: $(NAME)
 $(NAME): $(SRC)
 		@make -C ft_printf
 		@gcc -Wall -Werror -Wextra $(SRC) $(INCLUDES) -o $(NAME)
-		@gcc -Wall -Werror -Wextra $(SRC2) $(INCLUDES) -o $(NAME2)
+		@gcc -g -Wall -Werror -Wextra $(SRC2) $(INCLUDES) -o $(NAME2)
 		@echo "-> compil push_swap and checker"
-
-comp:
-		@gcc -Wall -Werror -Wextra $(SRC) $(INCLUDES) -o $(NAME)
-		@gcc -Wall -Werror -Wextra $(SRC2) $(INCLUDES) -o $(NAME2)
-		@echo "-> comp push_swap and checker"
 
 clean:
 		@make clean -C ft_printf

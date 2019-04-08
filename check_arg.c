@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:32:11 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/08 00:53:36 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 11:32:03 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,23 @@ static int	*create_num_stack(char **str, int *size)
 	char	**str_spl;
 	int		*num;
 	int		i;
+	int		ch;
 
 	i = 0;
+	ch = 0;
 	str_spl = ft_strsplit(*str, ' ');
 	free(*str);
 	num = (int*)malloc(sizeof(int) * (*size));
 	while (str_spl[i])
 	{
-		num[i] = ft_atoi(str_spl[i]);
-		ft_strdel(&str_spl[i]);
-		i++;
+		if (ft_ll_atoi(str_spl[i]) > 2147483647 ||
+			ft_ll_atoi(str_spl[i]) < -2147483648 || ft_strlen(str_spl[i]) > 11)
+			ch = 1;
+		num[i] = ft_ll_atoi(str_spl[i]);
+		ft_strdel(&str_spl[i++]);
 	}
 	free(str_spl);
-	if (diff_num(num, *size) == 0)
+	if (diff_num(num, *size) == 0 || ch)
 	{
 		ft_putstr("Error\n");
 		exit(1);

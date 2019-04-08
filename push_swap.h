@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:21:33 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/08 09:14:05 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 09:51:22 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ int					validation_stack(t_swap *w);
 void				push_b(t_swap *w);
 void				check_three(t_swap *w);
 int					comparison(t_best *best, t_best *tmp);
+void				free_t_swap(t_swap *w);
 
 #endif

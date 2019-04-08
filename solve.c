@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 22:16:55 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/08 09:20:31 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 10:35:18 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,12 +124,11 @@ void			solve(t_swap *w)
 	posit = position(w->a);
 	sr_i = serc_num(w, posit[0]);
 	while (w->a->num[w->a->size] != posit[0])
-	{
 		if ((w->a->size / 2) <= sr_i)
 			com_ra(w, 1);
 		else
 			com_rra(w, 1);
-	}
 	reverse_arr_num(w->a->num, w->a->size);
 	free(posit);
+	free_t_swap(w);
 }

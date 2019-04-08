@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 17:33:06 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/08 08:09:16 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 10:30:11 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ static int	distributor(t_swap *w, char *line)
 	return (0);
 }
 
+static void	free_arr(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
 static int	checker_2(t_swap *w, char *str, int flag)
 {
 	char	**arr_str;
@@ -53,12 +66,14 @@ static int	checker_2(t_swap *w, char *str, int flag)
 		if (distributor(w, arr_str[i]) == 1)
 		{
 			ft_printf("Error\n");
+			free_arr(arr_str);
 			exit(1);
 		}
 		if (flag == 1)
 			print_swap(w);
 		i++;
 	}
+	free_arr(arr_str);
 	if (validation_check(w) == 0)
 		ft_printf("OK\n");
 	else
@@ -75,10 +90,7 @@ int			main(int argc, char **argv)
 
 	flag = 0;
 	if (argc < 2)
-	{
-		ft_printf("Error\n");
 		return (0);
-	}
 	if (ft_strcmp(argv[1], "-v") == 0)
 		flag = 1;
 	w = create_t_swap(argc, argv, flag);
@@ -89,5 +101,7 @@ int			main(int argc, char **argv)
 		str = ft_strjoin_free(str, "\n", 1, 0);
 	}
 	checker_2(w, str, flag);
+	free(str);
+	free_t_swap(w);
 	return (0);
 }

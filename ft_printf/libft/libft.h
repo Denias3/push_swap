@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/01 16:39:50 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/04 17:19:17 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 10:50:37 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int					check_number(char *str);
 int					num_delim(char *str, char c);
 int					*reverse_arr_num(int *num, int len);
 int					*arr_numdup(int *num, int len);
+long long int		ft_ll_atoi(const char *str);
 
 #endif

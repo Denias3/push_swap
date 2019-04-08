@@ -6,11 +6,20 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/28 15:34:31 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/06 21:13:09 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 09:54:21 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	free_t_swap(t_swap *w)
+{
+	free(w->a->num);
+	free(w->a);
+	free(w->b->num);
+	free(w->b);
+	free(w);
+}
 
 t_swap	*create_t_swap(int ac, char **av, int start)
 {
