@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:21:33 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/07 01:41:19 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 09:14:05 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ typedef	struct		s_swap
 	t_stack *a;
 	t_stack *b;
 }					t_swap;
+
+typedef	struct		s_best
+{
+	int a;
+	int b;
+	int wh_a;
+	int wh_b;
+}					t_best;
 
 int					*check_arg(int arc, char **arg, int *size, int start);
 int					diff_num(int *num, int len);
@@ -52,5 +60,12 @@ void				com_rrr(t_swap *w, int pr);
 int					validation_check(t_swap *w);
 void				solve(t_swap *w);
 int					*position(t_stack *st);
+int					serc_num(t_swap *w, int sr);
+int					serc_num_more(t_swap *w, int *num, int sr, int *res);
+int					serc_num_more_2(t_swap *w, int *num, int sr);
+int					validation_stack(t_swap *w);
+void				push_b(t_swap *w);
+void				check_three(t_swap *w);
+int					comparison(t_best *best, t_best *tmp);
 
 #endif

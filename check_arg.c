@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 17:32:11 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/06 21:21:58 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 00:53:36 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int			*check_arg(int arc, char **arg, int *size, int start)
 	i = 1 + start;
 	while (i < (*size))
 	{
-		// ft_printf("i = %d, %s\n", i, arg[i]);
 		if (check_number_space(arg[i]) == 0)
 		{
 			ft_putstr("Error\n");

@@ -6,34 +6,13 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 01:39:49 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/07 01:58:48 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 08:23:55 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// static int max_elem_arr(int *arr, int size)
-// {
-// 	int num;
-// 	int len;
-// 	int i;
-//
-// 	len = 0;
-// 	i = 0;
-// 	num = arr[i];
-// 	while (i <= size)
-// 	{
-// 		if (arr[i] > num)
-// 		{
-// 			num = arr[i];
-// 			len = i;
-// 		}
-// 		i++;
-// 	}
-// 	return (len);
-// }
-//
-static int min_elem_arr(int *arr, int size)
+static int	min_elem_arr(int *arr, int size)
 {
 	int num;
 	int len;
@@ -54,7 +33,18 @@ static int min_elem_arr(int *arr, int size)
 	return (len);
 }
 
-static int position_elem_arr(t_stack *st, int min)
+static int	position_elem_arr_2(t_stack *st, int *i, int min)
+{
+	while (*i <= st->size)
+	{
+		if (st->num[*i] > st->num[min])
+			return (st->num[*i]);
+		(*i)++;
+	}
+	return (0);
+}
+
+static int	position_elem_arr(t_stack *st, int min)
 {
 	int num;
 	int len;
@@ -62,15 +52,7 @@ static int position_elem_arr(t_stack *st, int min)
 
 	len = 0;
 	i = 0;
-	while (i <= st->size)
-	{
-		if (st->num[i] > st->num[min])
-		{
-			num = st->num[i];
-			break ;
-		}
-		i++;
-	}
+	num = position_elem_arr_2(st, &i, min);
 	i = 0;
 	while (i <= st->size)
 	{

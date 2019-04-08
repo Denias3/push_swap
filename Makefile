@@ -14,7 +14,9 @@ command_1.c\
 command_2.c\
 validation_check.c\
 solve.c\
-position.c
+position.c\
+ser_num.c\
+solve_2.c
 
 SRC2 = checker.c\
 check_arg.c\

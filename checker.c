@@ -6,7 +6,7 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 17:33:06 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/06 21:24:20 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 08:09:16 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	distributor(t_swap *w, char *line)
 {
-	if (ft_strcmp(line, "sa")  == 0)
+	if (ft_strcmp(line, "sa") == 0)
 		com_sa(w, 0);
 	else if (ft_strcmp(line, "sb") == 0)
 		com_sb(w, 0);
@@ -43,8 +43,8 @@ static int	distributor(t_swap *w, char *line)
 
 static int	checker_2(t_swap *w, char *str, int flag)
 {
-	char **arr_str;
-	int i;
+	char	**arr_str;
+	int		i;
 
 	i = 0;
 	arr_str = ft_strsplit(str, '\n');

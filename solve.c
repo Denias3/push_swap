@@ -6,151 +6,130 @@
 /*   By: emeha <emeha@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/06 22:16:55 by emeha             #+#    #+#             */
-/*   Updated: 2019/04/07 00:19:46 by emeha            ###   ########.fr       */
+/*   Updated: 2019/04/08 09:20:31 by emeha            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_position(int *num, int size)
+static void		best_item_1(t_swap *w, t_best *tmp, int sr_i, int i)
 {
-	int i;
-
-	i = size;
-	while (i >= 0)
+	if (sr_i <= w->a->size - sr_i - 1)
 	{
-		ft_printf("%d\n", num[i]);
-		i--;
+		tmp->a = sr_i + 1;
+		tmp->wh_a = 1;
 	}
-	ft_printf("\n");
+	else
+	{
+		tmp->a = w->a->size - sr_i;
+		tmp->wh_a = 0;
+	}
+	if (i <= w->b->size - i - 1)
+	{
+		tmp->b = i + 1;
+		tmp->wh_b = 1;
+	}
+	else
+	{
+		tmp->b = w->b->size - i;
+		tmp->wh_b = 0;
+	}
 }
 
-int		serc_num(int *num, int size, int sr)
+static t_best	*best_item(t_swap *w)
 {
-	int i;
+	int		*posit;
+	int		sr_i;
+	int		i;
+	t_best	*best;
+	t_best	*tmp;
 
 	i = 0;
-	while (i <= size)
-	{
-		if (num[i] == sr)
-		{
-			return (num[i]);
-		}
-		i++;
-	}
-	return (-1);
-}
-
-int		serc_num_more(t_swap *w, int *num, int size, int sr)
-{
-	int i;
-	int j;
-
-	j = 0;
-	i = 0;
-	while (i <= size)
-	{
-		if (num[i] > sr)
-		{
-			j = 0;
-			while (j <= size)
-			{
-				if (w->a->num[j] == num[i])
-					return (j);
-				j++;
-			}
-		}
-		i++;
-	}
-	return (-1);
-}
-
-void	push_b(t_swap *w)
-{
-	int *posit;
-	int i;
-
-	i = w->a->size;
+	best = (t_best*)malloc(sizeof(t_best));
+	tmp = (t_best*)malloc(sizeof(t_best));
 	posit = position(w->a);
-	while (i >= 0)
+	while (i <= w->b->size)
 	{
-		if (w->a->size == 2)
-			return ;
-		if (posit[0] != w->a->num[w->a->size] &&
-			posit[w->a->max] != w->a->num[w->a->size] &&
-			posit[w->a->max / 2] != w->a->num[w->a->size])
-		com_pb(w, 1);
-		else
-			com_ra(w, 1);
-//		print_swap(w);
-		i--;
+		sr_i = serc_num_more_2(w, posit, w->b->num[i]);
+		best_item_1(w, tmp, sr_i, i);
+		if (i++ == 0 || comparison(best, tmp))
+		{
+			best->a = tmp->a;
+			best->b = tmp->b;
+			best->wh_a = tmp->wh_a;
+			best->wh_b = tmp->wh_b;
+		}
 	}
 	free(posit);
+	free(tmp);
+	return (best);
 }
 
-void	check_three(t_swap *w)
+static void		solve_2(t_swap *w, t_best *best)
 {
-	if (w->a->num[w->a->size] > w->a->num[w->a->size - 1] &&
-		w->a->num[w->a->size] < w->a->num[0] &&
-		w->a->num[w->a->size -1] < w->a->num[0])
-		com_sa(w, 1);
-	if (w->a->num[w->a->size] > w->a->num[w->a->size - 1] &&
-		w->a->num[w->a->size] > w->a->num[0] &&
-		w->a->num[w->a->size -1] > w->a->num[0])
-		com_sa(w, 1);
-	if (w->a->num[w->a->size] < w->a->num[w->a->size - 1] &&
-		w->a->num[w->a->size] < w->a->num[0] &&
-		w->a->num[w->a->size -1] > w->a->num[0])
-		com_sa(w, 1);
+	if (best->a > 0)
+	{
+		if (best->wh_a == 0)
+			com_ra(w, 1);
+		else
+			com_rra(w, 1);
+		best->a--;
+	}
+	else if (best->b > 0)
+	{
+		if (best->wh_b == 0)
+			com_rb(w, 1);
+		else
+			com_rrb(w, 1);
+		best->b--;
+	}
 }
 
-void	solve(t_swap *w)
+static void		solve_1(t_swap *w, t_best *best)
 {
-	int *posit;
-	int sr_i;
-	int sr;
+	while (best->wh_a == best->wh_b && (best->a > 0 && best->b > 0))
+	{
+		if (best->wh_a == 0 && best->wh_b == 0)
+		{
+			com_rr(w, 1);
+			best->a--;
+			best->b--;
+		}
+		else if (best->wh_a == 1 && best->wh_b == 1)
+		{
+			com_rrr(w, 1);
+			best->a--;
+			best->b--;
+		}
+	}
+	solve_2(w, best);
+}
 
-	sr_i = 0;
-	sr = 0;
-//	print_swap(w);
+void			solve(t_swap *w)
+{
+	int		*posit;
+	int		sr_i;
+	t_best	*best;
+
 	push_b(w);
 	check_three(w);
-//	print_swap(w);
 	while (w->b->size != -1)
 	{
-		posit = position(w->a);
-		if ((sr_i = serc_num_more(w ,posit, w->a->size, w->b->num[w->b->size])) != -1)
-		{
-			if ((sr = serc_num(w->a->num, w->a->size, w->a->num[sr_i])) != -1)
-			{
-				while (sr != w->a->num[w->a->size])
-				{
-					if ((w->a->size / 2) > sr_i)
-						com_rra(w, 1);
-					else
-						com_ra(w, 1);
-//					print_swap(w);
-				}
-				com_pa(w, 1);
-//				print_swap(w);
-			}
-		}
-		free(posit);
+		best = best_item(w);
+		while (best->a > 0 || best->b > 0)
+			solve_1(w, best);
+		free(best);
+		com_pa(w, 1);
 	}
-	print_swap(w);
 	posit = position(w->a);
-	if ((sr_i = serc_num(w->a->num, w->a->size, posit[0])) != -1)
+	sr_i = serc_num(w, posit[0]);
+	while (w->a->num[w->a->size] != posit[0])
 	{
-		while (w->a->num[w->a->size] != posit[0])
-		{
-			if ((w->a->size / 2) <= sr_i)
-				com_ra(w, 1);
-			else
-				com_rra(w, 1);
-			print_swap(w);
-		}
+		if ((w->a->size / 2) <= sr_i)
+			com_ra(w, 1);
+		else
+			com_rra(w, 1);
 	}
-	print_swap(w);
 	reverse_arr_num(w->a->num, w->a->size);
 	free(posit);
 }
